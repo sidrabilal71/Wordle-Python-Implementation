@@ -1,16 +1,23 @@
-# This is a sample Python script.
+from GamePlay import start_new_game
+from GameSettings import GameSettings
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+class Main:
+    def __init__(self):
+        self.settings = GameSettings()
+
+    def run(self):
+        print("Welcome to the Wordle Enhanced Game!")                               # Welcome the user to the game
+        self.settings.configure_settings()                                          # Starting point of the game is by specifying the settings
+        print("Game will start with the following settings:")                       # Showing which settings have been established
+        print(self.settings)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+        game_session=start_new_game({
+    "difficulty": self.settings.difficulty,
+    "length": self.settings.word_length
+})
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Example of running the main class
+if __name__ == "__main__":
+    game = Main()
+    game.run()
