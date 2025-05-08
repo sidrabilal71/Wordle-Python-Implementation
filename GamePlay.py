@@ -53,9 +53,20 @@ def start_new_game(settings):
         if guess == session["secret_word"]:
             session["won"] = True
             print(f"You won! The secret word was: {guess}.")
+            print(f"🔠 Game initialized with a {length}-letter word (Difficulty: {difficulty})")
             break
         session["attempts_left"] = session["attempts_left"] - 1
         session["guesses"].append(guess)
 
-    print(f"🔠 Game initialized with a {length}-letter word (Difficulty: {difficulty})")
+        if not session["won"] and session["attempts_left"] > 0:
+            if session["attempts_left"] > 1:
+                print(f"Your word is not correct! You have {session["attempts_left"]} attempts left. Think carefully.")
+            else:
+                print(f"Your word is not correct! You only have one attempt left. Think carefully.")
+
+        if session["attempts_left"] == 0:
+            print(f"You lost! The secret word was: {guess}.")
+            print(f"🔠 Game initialized with a {length}-letter word (Difficulty: {difficulty})")
+
     return session
+

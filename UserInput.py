@@ -1,3 +1,10 @@
+import requests
+
+def check_word(word):                                               # Used to check if the input word exists
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    response = requests.get(url)
+    return response.status_code == 200
+
 def get_guess(length):
     while True:
         guess = input(f"Enter your {length}-letter guess: ").lower().strip()
@@ -11,10 +18,9 @@ def get_guess(length):
             continue
 
 #TODO: UC7, check if the word exists
-        # if guess not in valid_words:      #add valid_words to attributes
-        #     print("That's not a valid word.")
-        #     continue
-
+        if not check_word(guess):      #add valid_words to attributes
+            print("That's not a valid word.")
+            continue
 
         return guess  #turns it into a list of letters
 
