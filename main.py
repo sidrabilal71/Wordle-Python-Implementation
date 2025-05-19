@@ -1,9 +1,11 @@
 from GamePlay import start_new_game
 from GameSettings import GameSettings
+from GameStats import GameStats
 
 class Main:
     def __init__(self):
         self.settings = GameSettings()
+        self.stats = GameStats()  # Add the stats object
 
     def run(self):
         while True:
@@ -15,6 +17,13 @@ class Main:
                 "difficulty": self.settings.difficulty,
                 "length": self.settings.word_length
             })
+
+            if game_session["won"]:
+                self.stats.record_win()
+            else:
+                self.stats.record_loss()
+
+            self.stats.display_stats()                                                 # Show stats after each game
 
             play_again = input("\n🔁 Do you want to play again? (yes/no): ").strip().lower()
             if play_again not in ["yes", "y"]:
