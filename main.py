@@ -35,7 +35,7 @@ class Main:
             else:
                 print("❌ Invalid choice. Please enter 1–4.")
 
-    def start_game_flow(self):
+    def start_game_flow(self):                                            # The flow of the game to continue playing and register wins/losses
         self.settings.configure_settings()                                # Starting point of the game is by specifying the settings
         if self.settings.mode == "daily":
             if self.stats.has_played_today(self.settings.word_length):
