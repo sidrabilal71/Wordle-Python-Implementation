@@ -31,7 +31,8 @@ class GameSettings:
     def configure_settings(self):
         print("Configure your game settings:")
         self.set_mode()
-        self.set_difficulty()
+        if self.mode == "normal":
+            self.set_difficulty()
         self.set_word_length()
 
     def __str__(self):

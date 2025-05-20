@@ -1,6 +1,7 @@
 import random
 from UserInput import validate_guess
 from dataclasses import field
+from datetime import datetime
 
 ATTEMPTS = 6
 
@@ -24,17 +25,38 @@ def load_words(difficulty="easy", length=5):
         print(f"Word file {filename} not found.")
         return []
 
+def get_day_of_year():
+    return datetime.now().timetuple().tm_yday
+
+def load_daily_word(length):
+    filename = f"daily{length}letters.txt"
+
+    try:
+        with open(filename, "r") as file:
+            words = [line.strip().lower() for line in file if len(line.strip()) == length]
+            index = (get_day_of_year() - 1) % len(words)  # Wrap around if list is shorter than 365
+            return words[index]
+    except FileNotFoundError:
+        print(f"❌ Daily word file {filename} not found.")
+        return None
+
 def start_new_game(settings):
     print("\n🎮 Starting a new game...")
 
     difficulty = settings.get("difficulty", "easy")
     length = settings.get("length", 5)
+    mode = settings.get("mode", "normal")
 
-    word_list = load_words(difficulty, length)
-    if not word_list:
-        return None
+    if mode == "daily":
+        secret_word = load_daily_word(length)
+        if not secret_word:
+            return None
+    else:
+        word_list = load_words(difficulty, length)
+        if not word_list:
+            return None
+        secret_word = random.choice(word_list)
 
-    secret_word = random.choice(word_list)
     session = {
         "secret_word": secret_word,
         "attempts_left": ATTEMPTS,
