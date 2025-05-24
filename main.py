@@ -7,6 +7,7 @@ class Main:
         self.settings = GameSettings()
         self.stats = GameStats()
 
+
     def run(self):
         while True:
             print("Welcome to the Wordle Enhanced Game!")                  # Welcome the user to the game and present the menu

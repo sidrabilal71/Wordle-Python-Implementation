@@ -2,6 +2,7 @@ import random
 from UserInput import validate_guess
 from dataclasses import field
 from datetime import datetime
+from UserInput import validate_guess, display_feedback, update_letter_status, display_keyboard
 
 ATTEMPTS = 6
 
@@ -72,6 +73,10 @@ def start_new_game(settings):
 
         # color_results = color for letters, guess is the word in a string, letters are the list of that string
         color_results, guess, letters = validate_guess(session["secret_word"])  #returns a list as long as the word, where in each position there's is "s","g" and "y" for silver(grey), green and yellow
+        display_feedback(color_results, guess)
+        update_letter_status(color_results, guess)
+        display_keyboard()
+
         if guess == session["secret_word"]:
             session["won"] = True
             print(f"You won! The secret word was: {guess}.")
