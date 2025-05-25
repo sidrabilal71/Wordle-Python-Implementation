@@ -17,7 +17,10 @@ def load_words(difficulty="easy", length=5):
 
     try:
         with open(filename, "r") as file:
-            words = [word.strip().lower() for word in file if len(word.strip()) == length]
+            words = list(
+                filter(lambda w: len(w) == length,
+                       map(lambda w: w.strip().lower(), file))
+            )
             if difficulty == "difficult":
                 return words[30:]  # lines 31 onwards (0-indexed)
             else:
@@ -34,7 +37,12 @@ def load_daily_word(length):
 
     try:
         with open(filename, "r") as file:
-            words = [line.strip().lower() for line in file if len(line.strip()) == length]
+            words = list(
+                filter(
+                    lambda w: len(w) == length,
+                    map(lambda line: line.strip().lower(), file)
+                )
+            )
             index = (get_day_of_year() - 1) % len(words)  # Wrap around if list is shorter than 365
             return words[index]
     except FileNotFoundError:
@@ -68,8 +76,7 @@ def start_new_game(settings):
 
     # loop for guessing one word
     for i in range(ATTEMPTS):
-        print(session)
-        #TODO: do stuff with the return color_results
+
 
         # color_results = color for letters, guess is the word in a string, letters are the list of that string
         color_results, guess, letters = validate_guess(session["secret_word"])  #returns a list as long as the word, where in each position there's is "s","g" and "y" for silver(grey), green and yellow

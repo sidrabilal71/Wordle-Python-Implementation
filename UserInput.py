@@ -5,7 +5,7 @@ letter_status = defaultdict(lambda: None)                                       
 
 KEYBOARD_ROWS = [
     "     QWERTYUIOP",
-    "     ASDFGHJKLÑ",
+    "     ASDFGHJKL",
     "      ZXCVBNM"
 ]
 COLOR_CODES = {
@@ -48,26 +48,30 @@ def validate_guess(secret_word):
     length = len(secret_word_letters)
     color_list = [SILVER] * length                                                                                      #ALL SILVER
     guess = get_guess(length)
-    letters = list(guess)
+    letters = list(map(lambda x: x, guess))
 
     used_secret = [False] * length
     used_guess = [False] * length
 
     # GREEN
-    for i in range(length):
+    def match_green(i):
         if letters[i] == secret_word_letters[i]:
             color_list[i] = GREEN
             used_secret[i] = True
             used_guess[i] = True
 
+    list(map(match_green, range(length)))
+
     #YELLOW
-    for i in range(length):
+    def match_yellow(i):
         if not used_guess[i]:
             for j in range(length):
                 if not used_secret[j] and letters[i] == secret_word_letters[j]:
                     color_list[i] = YELLOW
                     used_secret[j] = True
                     break
+
+    list(map(match_yellow, range(length)))
 
     return color_list, guess, letters
 
