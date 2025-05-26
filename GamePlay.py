@@ -8,23 +8,18 @@ from UserInput import validate_guess, display_feedback, update_letter_status, di
 ATTEMPTS = 6
 
 def load_words(difficulty="easy", length=5):
-    filename = f"{difficulty}_{length}.txt"
-
-    if length==5:
-        filename=f"words5letters.txt"
-    elif length==6:
-        filename=f"words6letters.txt"
-
+    filename = f"words{length}letters.txt"
 
     try:
         with open(filename, "r") as file:
             words = list(
                 map(lambda w: w.strip().lower(), file))
+            midpoint = len(words) // 2  # Split in half
 
             if difficulty == "difficult":
-                return words[30:]  # lines 31 onwards (0-indexed)
+                return words[midpoint:]  # Second half
             else:
-                return words[:30]  # lines 1–30
+                return words[:midpoint]  # First half
     except FileNotFoundError:
         print(f"Word file {filename} not found.")
         return []
