@@ -99,7 +99,11 @@ def update_letter_status(color_list, guess):
             continue
         letter_status[letter] = color
 
-def display_keyboard():
+def display_keyboard(reset = False):
+    if reset:
+        letter_status.clear()   #clears the colors from the keyboard for new game
+        return
+
     print("\n⌨️ Used Letters:")
     for row in KEYBOARD_ROWS:
         line = ""

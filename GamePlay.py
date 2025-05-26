@@ -73,6 +73,8 @@ def start_new_game(settings):
         "guesses": [],
         "won": False
     }
+    display_keyboard(True)
+
 
     # loop for guessing one word
     for i in range(ATTEMPTS):
@@ -94,7 +96,7 @@ def start_new_game(settings):
 
         if not session["won"] and session["attempts_left"] > 0:
             if session["attempts_left"] > 1:
-                print(f"Your word is not correct! You have {session["attempts_left"]} attempts left. Think carefully.")
+                print(f"Your word is not correct! You have {session['attempts_left']} attempts left. Think carefully.")
             else:
                 print(f"Your word is not correct! You only have one attempt left. Think carefully.")
 
