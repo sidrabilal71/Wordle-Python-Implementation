@@ -63,7 +63,7 @@ class Main:
                 self.stats.save_daily_play(self.settings.word_length)  # Still counts as played
 
         self.stats.display_stats()                                        # Show stats after each game
-        input("Press Enter to return to the main menu...")
+        input("Press Enter to return to the main menu...\n")
 
 # Example of running the main class
 if __name__ == "__main__":
