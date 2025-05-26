@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 from UserInput import validate_guess
 from dataclasses import field
 from datetime import datetime
@@ -7,7 +8,7 @@ from UserInput import validate_guess, display_feedback, update_letter_status, di
 ATTEMPTS = 6
 
 def load_words(difficulty="easy", length=5):
-    filename = f"{difficulty}_{length}.txt"  # e.g., "easy_5.txt"
+    filename = f"{difficulty}_{length}.txt"
 
     if length==5:
         filename=f"words5letters.txt"
@@ -33,21 +34,25 @@ def get_day_of_year():
     return datetime.now().timetuple().tm_yday
 
 def load_daily_word(length):
-    filename = f"daily{length}letters.txt"
+    filename = f"words{length}letters.txt"
 
     try:
         with open(filename, "r") as file:
             words = list(
-                filter(
-                    lambda w: len(w) == length,
-                    map(lambda line: line.strip().lower(), file)
-                )
+                map(lambda line: line.strip().lower(), file)
             )
-            index = (get_day_of_year() - 1) % len(words)  # Wrap around if list is shorter than 365
+
+            # Use today's date as a seed
+            today = datetime.now().strftime("%Y-%m-%d")  #"2025-05-25"
+            random.seed(today)
+
+            index = random.randint(0, len(words) - 1)
             return words[index]
+
     except FileNotFoundError:
         print(f"❌ Daily word file {filename} not found.")
         return None
+
 
 def start_new_game(settings):
     print("\n🎮 Starting a new game...")
@@ -73,7 +78,7 @@ def start_new_game(settings):
         "guesses": [],
         "won": False
     }
-    display_keyboard(True)
+    display_keyboard(True)  #removes the colors of the previous game on the keyboard
 
 
     # loop for guessing one word
