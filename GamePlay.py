@@ -101,7 +101,7 @@ def start_new_game(settings):
                 print(f"Your word is not correct! You only have one attempt left. Think carefully.")
 
         if session["attempts_left"] == 0:
-            print(f"You lost! The secret word was: {guess}.")
+            print(f"You lost! The secret word was: {session['secret_word']}.")
             print(f"🔠 Game initialized with a {length}-letter word (Difficulty: {difficulty})")
 
     return session
