@@ -19,9 +19,8 @@ def load_words(difficulty="easy", length=5):
     try:
         with open(filename, "r") as file:
             words = list(
-                filter(lambda w: len(w) == length,
-                       map(lambda w: w.strip().lower(), file))
-            )
+                map(lambda w: w.strip().lower(), file))
+
             if difficulty == "difficult":
                 return words[30:]  # lines 31 onwards (0-indexed)
             else:
@@ -40,7 +39,7 @@ def load_daily_word(length):
             )
 
             # Use today's date as a seed
-            today = datetime.now().strftime("%Y-%m-%d")  #"2025-05-25"
+            today = datetime.now().strftime("%Y-%m-%d")  #example "2025-05-25"
             random.seed(today)
 
             index = random.randint(0, len(words) - 1)
@@ -80,7 +79,6 @@ def start_new_game(settings):
 
     # loop for guessing one word
     for i in range(ATTEMPTS):
-
 
         # color_results = color for letters, guess is the word in a string, letters are the list of that string
         color_results, guess, letters = validate_guess(session["secret_word"])  #returns a list as long as the word, where in each position there's is "s","g" and "y" for silver(grey), green and yellow
