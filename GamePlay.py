@@ -30,9 +30,6 @@ def load_words(difficulty="easy", length=5):
         print(f"Word file {filename} not found.")
         return []
 
-def get_day_of_year():
-    return datetime.now().timetuple().tm_yday
-
 def load_daily_word(length):
     filename = f"words{length}letters.txt"
 
