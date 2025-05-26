@@ -88,7 +88,7 @@ def start_new_game(settings):
 
         if guess == session["secret_word"]:
             session["won"] = True
-            print(f"You won! The secret word was: {guess}.")
+            print(f"You won! The secret word was: {session['secret_word']}.")
             print(f"🔠 Game initialized with a {length}-letter word (Difficulty: {difficulty})")
             break
         session["attempts_left"] = session["attempts_left"] - 1
