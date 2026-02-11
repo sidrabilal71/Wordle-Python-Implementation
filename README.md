@@ -28,8 +28,6 @@ The project is built to meet specific academic criteria for **OOP** and clean co
 * **Functional Programming:** Utilizes list comprehensions and filters for efficient word list management and validation.
 * **Single Entry Point:** The entire application runs via a single command through the `Main.py` file.
 
----
-
 
 
 ---
