@@ -53,9 +53,3 @@ pip install colorama
 python Main.py
 
 ```
-
-
-
----
-
-Would you like me to help you draft the **written PDF report** (5-7 pages) next?
