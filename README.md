@@ -6,65 +6,29 @@ This project is a custom version of the popular word-guessing game **Wordle**, d
 
 ## 🎮 Game Features
 
-* 
-**Two Game Modes:** Includes a **Normal Mode** for standard play and a **Daily Mode** where everyone globally plays the same word based on the date.
+* **Normal Mode:** Play with a randomly selected word at any time.
+* **Daily Mode:** Play the "Word of the Day"—the same word is generated globally for all players based on the date.
+* **Customizable Settings:** A dedicated menu to change word length (5 or 6 letters) and difficulty levels (Easy or Difficult).
+* **Real-time Feedback:** * 🟩 **Green (1):** Correct letter in the correct position.
+* 🟨 **Yellow (2):** Correct letter in the wrong position.
+* ⬜ **Gray/Red (0):** Letter is not in the word.
 
 
-* 
-**Customizable Settings:** A dedicated settings menu allows players to toggle between 5 or 6-letter words and set the difficulty to Easy or Difficult.
-
-
-* 
-**Interactive Feedback:** Uses a color-coded scoring system where 1 (Green) is a correct match, 2 (Yellow) is the right letter in the wrong spot, and 0 (Red/Gray) is an incorrect letter.
-
-
-* 
-**Statistics & Persistence:** Tracks user streaks, win/loss history, and performance statistics across sessions.
-
-
-* 
-**Validation:** Guesses are checked against a dictionary to ensure only valid 5 or 6-letter words are accepted.
-
-
+* **Player Statistics:** Tracks win/loss notifications, current streaks, and past performance.
+* **Validation:** Only accepts valid dictionary words that match the selected length.
 
 ---
 
-## 🛠️ Technical Implementation
+## 🛠️ Technical Design
 
 The project is built to meet specific academic criteria for **OOP** and clean code organization:
 
-* **OOP Principles:** Implements concrete objects (Game, Player, WordManager) with structured relations to avoid redundancy.
-* **Composition-Based:** Prioritizes composition over inheritance to ensure modularity and reduce dependency issues.
-* 
-**Single Command Execution:** In accordance with course requirements, the entire application runs via the `Main.py` file.
-
-
-* **Centralized Utilities:** Uses a `Constants` class for dialogue and a `Utilities` class for shared methods like colored console output.
+* **Object-Oriented Architecture:** Implements concrete classes (Game, Player, WordManager) to manage game state and relations.
+* **Composition-Based:** Prioritizes composition to ensure modularity and reduce dependency issues between classes.
+* **Functional Programming:** Utilizes list comprehensions and filters for efficient word list management and validation.
+* **Single Entry Point:** The entire application runs via a single command through the `Main.py` file.
 
 ---
-
-## 👥 Team & Responsibilities
-
-The workload was divided among the group to ensure equal contribution:
-
-* 
-**Game Logic Developer:** Core mechanics, word checking, and feedback systems.
-
-
-* 
-**UI/UX Developer:** Interface design (TUI/GUI) and user experience.
-
-
-* 
-**Word Manager:** Loading dictionaries, validating words, and managing difficulty tiers.
-
-
-* 
-**Testing & Scoring Lead:** Unit testing and statistical tracking.
-
-
-* 
-**Report Writing:** Managed by Patri and Abbas.
 
 
 
@@ -74,7 +38,7 @@ The workload was divided among the group to ensure equal contribution:
 
 1. **Clone the repository:**
 ```bash
-git clone [https://github.com/sidrabilal71/WordleAPCProject]
+git clone https://github.com/sidrabilal71/WordleAPCProject
 
 ```
 
@@ -86,7 +50,7 @@ pip install colorama
 ```
 
 
-3. **Execute the game:**
+3. **Run the game:**
 ```bash
 python Main.py
 
@@ -96,4 +60,4 @@ python Main.py
 
 ---
 
-Would you like me to help you draft the **5-7 page PDF report** or the **intermediate progress report** due on May 1st?
+Would you like me to help you draft the **written PDF report** (5-7 pages) next?
